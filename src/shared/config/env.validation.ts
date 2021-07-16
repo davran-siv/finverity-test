@@ -1,5 +1,5 @@
 import { plainToClass, Transform } from 'class-transformer'
-import { IsString, validateSync } from 'class-validator'
+import { IsNumber, IsString, validateSync } from 'class-validator'
 
 class EnvironmentVariables {
   @IsString()
@@ -10,6 +10,9 @@ class EnvironmentVariables {
 
   @IsString()
   AWS_BUCKET_NAME: string
+
+  @IsNumber()
+  MAX_FILE_SIZE: number
 
   @IsString({ each: true })
   @Transform(({ value }) => value.split(','))

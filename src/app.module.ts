@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { MulterModule } from '@nestjs/platform-express'
 import { AwsDomainModule } from './modules/aws/aws.domain-module'
 import { UploaderDomainModule } from './modules/uploader/uploader.domain-module'
 import { validate } from './shared/config/env.validation'

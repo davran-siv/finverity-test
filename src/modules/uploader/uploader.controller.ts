@@ -9,7 +9,6 @@ export class UploaderController {
 
   @Get(':filename')
   @UseInterceptors(FileInterceptor('file'))
-  // @UseGuards(ContentTypeGuard)
   uploadFile(
     @Param('filename') filename: string,
     @UploadedFile() file: Express.Multer.File,
