@@ -13,7 +13,7 @@ export class UploaderController {
   uploadFile(
     @Param('filename') filename: string,
     @UploadedFile() file: Express.Multer.File,
-  ): any {
+  ): Promise<void> {
     return this.appService.upload(file, filename)
   }
 }
