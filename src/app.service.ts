@@ -33,25 +33,21 @@ export class AppService {
       )
     }
     return this.s3Domain.uploadFile({
-      fileName: originalName,
+      fileName: `${originalName}.${extension}`,
       file: file.buffer,
       contentType,
     })
   }
 
   throwErrorIfNotAllowedFileMime(extension: string, contentType: string): void {
-    const allowedContentType = this.configService
-      .get<string>('ALLOWED_CONTENT_TYPE')
-      .split(',')
+    const allowedContentType = this.configService.get<string[]>('ALLOWED_CONTENT_TYPE')
 
-    const allowedExtensions = this.configService
-      .get<string>('ALLOWED_EXTENSIONS')
-      .split(',')
+    const allowedExtensions = this.configService.get<string[]>('ALLOWED_EXTENSIONS')
 
     const isExtensionInWhiteList = allowedExtensions.some(it => it === extension)
     const isContentTypeInWhiteList = allowedContentType.some(it => it === contentType)
 
-    if (!isExtensionInWhiteList || isContentTypeInWhiteList) {
+    if (!isExtensionInWhiteList || !isContentTypeInWhiteList) {
       throw new BadRequestException('File mime is not allowed')
     }
   }
