@@ -1,11 +1,11 @@
 import { Controller, Get, Param, UploadedFile, UseInterceptors } from '@nestjs/common'
 import { FileInterceptor } from '@nestjs/platform-express'
 import { Express } from 'express'
-import { AppService } from './app.service'
+import { UploaderDomain } from './uploader.domain'
 
 @Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
+export class UploaderController {
+  constructor(private readonly appService: UploaderDomain) {}
 
   @Get(':filename')
   @UseInterceptors(FileInterceptor('file'))

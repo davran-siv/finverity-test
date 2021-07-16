@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { AwsDomainModule } from './modules/aws/aws.domain-module'
+import { UploaderDomainModule } from './modules/uploader/uploader.domain-module'
 import { validate } from './shared/config/env.validation'
 
 @Module({
   imports: [
     ConfigModule.forRoot({ validate }),
     AwsDomainModule,
+    UploaderDomainModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

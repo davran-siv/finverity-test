@@ -2,17 +2,13 @@ import { BadRequestException, Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { Express } from 'express'
 import * as mimeTypes from 'mime-types'
-import { S3Domain } from './modules/aws/s3/s3.domain'
-import { resizeImage } from './utils/image/resize-image.util'
-import { isImageType } from './utils/types/is-image.util'
-
-interface GetFileMimeTypes {
-  contentType: string
-  extension: string
-}
+import { S3Domain } from '../aws/s3/s3.domain'
+import { resizeImage } from '../../utils/image/resize-image.util'
+import { isImageType } from '../../utils/types/is-image.util'
+import { GetFileMimeTypes } from './uploader.interfaces'
 
 @Injectable()
-export class AppService {
+export class UploaderDomain {
   constructor(
     private s3Domain: S3Domain,
     private configService: ConfigService,
